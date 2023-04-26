@@ -1,0 +1,1 @@
+Este será o arquivo Readme do projeto baseado no Jogo Gênius.
