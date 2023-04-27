@@ -1,184 +1,129 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Original+Surfer&family=Roboto+Mono&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
+:root {
+  --robotoFonte: 'Roboto Mono', monospace;
+  --surferFonte: 'Original Surfer', cursive;
 }
 
 body {
   height: 100vh;
-  box-sizing: border-box;
+  margin: 1%;
+  margin-bottom: 5%;
+  border-style: 0%;
   background-color:#E8E2A7;
-  display: flex;
-  justify-content: space-between;
 }
 
 .principal {
-  margin: 10%;
   display: flex;
   align-items:center;
-  flex-direction: row;
-  justify-content: space-between;
+  gap: 20px;
 }
+
 .principal__regras {
-  width: 250px;
-  height: 200px;
-  padding-right: 3%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
 }
 .principal__regras__titulo {
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #191970;
-  font-family: 'Roboto Mono', monospace;
+  font-family: var(--surferFonte);
 }
 .principal__regras_lista {
-  font-size: 14px;
+  font-size: 1rem;
   color: #191970;
-  font-family: 'Roboto Mono', monospace;
+  font-family: var(--robotoFonte);
 }
 
 .principal__jogo {
-  box-sizing: border-box;
+  width: 30.2rem;
+  height: 30.2rem;
+  margin: 0% 0% 0% 0%;
+  box-sizing: content-box;
 }
-
-#principal__jogo__circulo {
+#principal__jogo__area {
   background: #000000;
-  border-radius: 50%;
-  height: 500px;
-  width: 500px;
-  position: relative;
-  border-style: solid;
-  border-width: 10px;
-  box-shadow: 8px 8px 15px 5px #888888;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-items: auto;
 }
 
-#principal__jogo__circulo__topleft {
-  position: absolute;
-  height: 250px;
-  width: 250px;
-  border-radius: 250px 0 0 0;
+#principal__jogo__area__verde {
+  width: 15.1rem;
+  height: 15.1rem;
   background: #006400;
-  top: 50%;
-  left: 50%;
-  margin: -250px 0px 0px -250px;
-  border-style: solid;
-  border-width: 5px;
-  box-sizing: border-box;
 }
-
-#principal__jogo__circulo__topright {
-  position: absolute;
-  height: 250px;
-  width: 250px;
-  border-radius: 0 250px 0 0;
+#principal__jogo__area__vermelho {
+  height: 15.1rem;
+  width: 15.1rem;
   background: #8b0000;
-  top: 50%;
-  left: 50%;
-  margin: -250px 0px 0px 0px;
-  border-style: solid;
-  border-width: 5px;
-  box-sizing: border-box;
 }
-
-#principal__jogo__circulo__bottomleft {
-  position: absolute;
-  height: 250px;
-  width: 250px;
-  border-radius: 0 0 0 250px;
+#principal__jogo__area__amarelo {
+  height: 15.1rem;
+  width: 15.1rem;
   background: #daa520;
-  top: 50%;
-  left: 50%;
-  margin: 0px -250px 0px -250px;
-  border-style: solid;
-  border-width: 5px;
-  box-sizing: border-box;
+}
+#principal__jogo__area__azul {
+  height: 15.1rem;
+  width: 15.1rem;
+  background: #00008b;
 }
 
-#principal__jogo__circulo__bottomright {
-  position: absolute;
-  height: 250px;
-  width: 250px;
-  border-radius: 0 0 250px 0;
-  background:#00008b;
-  top: 50%;
-  left: 50%;
-  margin: 0px 0px -250px 0px;
-  border-style: solid;
-  border-width: 5px;
-  box-sizing: border-box;
-}
-
-#principal__jogo__circulo__centro {
-  position: absolute;
+#principal__jogo__area__centro {
   background: #888888;
-  border-radius: 50%;
-  height: 250px;
-  width: 250px;
+  border-radius: 10%;
+  height: 13rem;
+  width: 13rem;
   border-style: solid;
-  border-width: 10px;
+  border-width: 0.25rem;
   top: 50%;
   left: 50%;
-  margin: -125px 0px 0px -125px;
-  box-sizing: border-box;
+  margin: 29% 0% 1% -72%;
+  box-sizing: content-box;
 }
-
-#principal__jogo__circulo__chamada {
-  font-family: 'Original Surfer', cursive;
-  font-size: 38px;
-  margin-left: 20px;
-  margin-top: 50px;
+#principal__jogo__area__centro__logo {
+  font-family: var(--surferFonte);
+  font-size: 2.5rem;
+  margin: 2% 0% 7% 3%;
 }
-
-#principal__jogo__circulo__seletor {
+#principal__jogo__area__centro__seletor {
   position: absolute;
-  font-family: 'Original Surfer', cursive;
-  margin-left: 15px;
-  margin-top: 5px;
+  margin-left: 2%;
 }
-
-.principal__jogo__circulo__seletor__texto {
-  font-family: 'Original Surfer', cursive;
-  padding-left: 15px;
+.principal__jogo__area__seletor__texto {
+  font-family: var(--robotoFonte);
 }
-
-#principal__jogo__circulo__botao__iniciar {
-  border: 50% !important;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-top: 35px;
-  margin-left: 70px;
+#principal__jogo__area__botao__iniciar {
   color: #4b0082;
-  font-size: 24px;
-  background-color: #7cfc00;
+  font-size: 1.5rem;
+  font-family: var(--robotoFonte);
+  background-color: #ffffff;
+  margin: 15% 0% 0% 23%;
 }
-
-#principal__jogo__circulo__rodada {
-  position: absolute;
+#principal__jogo__area__rodada {
   background: #330000;
   color: #ff0000;
-  font-family: courier;
-  font-size: 20px;
-  height: 30px;
-  width: 50px;
-  margin-left: 90px;
-  margin-top: 10px;
+  font-family: var(--robotoFonte);
+  font-size: 1.25rem;
+  height: 16%;
+  width: 60%;
+  margin: 1% 20%;
   text-align: center;
-  vertical-align: middle;
-  line-height: 30px;
 }
-
-.principal__jogo__circulo__rodada__texto {
-  font-family: 'Original Surfer', cursive;
-  font-size: 14px;
+.principal__jogo__area__rodada__texto {
+  font-family: var(--robotoFonte);
+  font-size: 1rem;
   font-weight: 400;
-  margin-top: 40px;
-  margin-left: 85px;
+  margin: 4% 35% 0%;
 }
 
+@media (max-width: 900px) {
+  .principal {
+    flex-direction: column;
+  }
+}
 
 
 
