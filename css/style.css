@@ -92,6 +92,12 @@ body {
   position: absolute;
   margin-left: 2%;
 }
+.principal__jogo__area__seletor__ligar {
+  background-color: #ff0000;
+}
+.principal__jogo__area__seletor__chance {
+  background-color: #ff0000;
+}
 .principal__jogo__area__seletor__texto {
   font-family: var(--robotoFonte);
 }
