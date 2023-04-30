@@ -1,175 +1,191 @@
-const _dados = {
-    ligarJogo: false,
-    iniciarPartida: false,
-    chance: false,
-    rodada: 0,
-    sequenciaJogo: [],
-    sequenciaJogador: [],
-    ganhou: true,
-    acenderLuz: 0,
-    continuarJogo: false,
 
-    timeout: undefined,
-    sons: [],
+//variáveis jogo
+let sequenciaJogo = [];
+let sequenciaJogador = [];
+let intervaloId = 0;
+let rodada = 0;
+let rodadaJogo = 0; //flash
+let jogoComputador = false;
+let ligado = false;
+let acertou = false;
+let vencedor = false;
 
+// comandos e eventos do jogo
+const btnIniciar = document.getElementById("principal__jogo__area__botao__iniciar"),
+    btnParar = document.getElementById("principal__jogo__area__botao__parar"),
+    verde = document.querySelector("#principal__jogo__area__verde"),
+    vermelho = document.querySelector("#principal__jogo__area__vermelho"),
+    azul = document.querySelector("#principal__jogo__area__azul"),
+    amarelo = document.querySelector("#principal__jogo__area__amarelo"),
+    placar = document.querySelector("#principal__jogo__area__rodada");
 
-// DEFINIR INTERVALO DO JOGO E DO JOGADOR.
+//evento click btn iniciar
+btnIniciar.addEventListener("click", ()=>{
+    ligado = true;
+    placar.innerHTML = "--";
+    clearInterval(intervaloId);
+    limparCores()
 
-};
-
-const _comandos = {
-    placar: document.getElementById("principal__jogo__area__rodada"),
-    ligarJogo: document.getElementById("principal__jogo__area__seletor__ligar"),
-    chance: document.getElementById("principal__jogo__area__seletor__chance"),
-    iniciarPartida: document.getElementById("principal__jogo__area__botao__iniciar"),
-    verde: document.getElementById("principal__jogo__area__verde"),
-    vermelho: document.getElementById("principal__jogo__area__vermelho"),
-    azul: document.getElementById("principal__jogo__area__azul"),
-    amarelo: document.getElementById("principal__jogo__area__amarelo")
-};
-
-_comandos.ligarJogo.addEventListener("click", () => {
-    _dados.ligarJogo = _comandos.ligarJogo.classList.toggle("principal__jogo__area__seletor__ligar");
-
-    _comandos.placar.classList.toggle("principal__jogo__area__rodada");
-    if(_dados.ligarJogo == true){
-        _comandos.placar.innerHTML = " -- ";
-    } else{
-        _comandos.placar.innerHTML = "";
-    }
-
-});
-
-_comandos.iniciarPartida.addEventListener("click", () => {
-    if(_dados.ligarJogo || _dados.ganhou){
-        iniciarNovaPartida();
+    if(ligado || ganhou){
+        iniciaRodada();
     }
 });
 
-function iniciarNovaPartida() {
-    
-    _dados.ganhou = false;
-    _dados.sequenciaJogo = [];
-    _dados.sequenciaJogador = [];
-    _dados.acenderLuz = 0;
-    _dados.rodada = 1;
-    _comandos.placar.innerHTML = "1";
-    _dados.continuarJogo = true;
+//evento click btn parar
+btnParar.addEventListener("click", () => {
+    ligado = false;
+    placar.innerHTML = "";
+    limparCores();
+    clearInterval(intervaloId);
+    alert("Volte sempre!!");
+});
 
+function iniciaRodada(){
+    vezDoJogo = true;
+    sequenciaJogo = [];
+    sequenciaJogador = [];
+    intervaloId = 0;
+    rodada = 1;
+    rodadaJogo = 0;
+    vencedor = false;
+    acertou = true;
+    placar.innerHTML = rodada;
+    limparCores();
+    //preenche sequencia jogo
     for(i=0;i<20;i++){
-        _dados.sequenciaJogo[i] = Math.floor(Math.random()*4 +1)
-    
-        _dados.timeout = setInterval(rodadaJogo, 800);
-
-        console.log(_dados.timeout);
+        sequenciaJogo.push(Math.floor(Math.random()*4 +1));
     }
-
+    
+    jogoComputador = true;
+    intervaloId = setInterval(rodadaComputador, 800);
 }
 
-function rodadaJogo() {
-    _dados.ligarJogo = false;
-    limparCores();
-    setTimeout(() => {
-        switch (_dados.sequenciaJogo[_dados.acenderLuz]) {
+function rodadaComputador(){
+    ligado = false;
+
+    if (rodada == rodadaJogo) {
+        clearInterval(intervaloId);
+        jogoComputador = false;
+        limparCores();
+        ligado = true;
+    }
+
+    if(jogoComputador){
+        limparCores();
+        
+        setTimeout(() => {
+            switch (sequenciaJogo[rodadaJogo]) {
+                case 1: ligarVerde(); break;
+                case 2: ligarVermelho(); break;
+                case 3: ligarAzul(); break;
+                case 4: ligarAmarelo(); break;
+            }
+            rodadaJogo++;
+        }, 200);
+    }
+}
+
+function ligarVerde(){
+    verde.style.backgroundColor = "lightgreen";
+}
+
+function ligarVermelho(){
+    vermelho.style.backgroundColor = "tomato";
+}
+
+function ligarAzul(){
+    azul.style.backgroundColor = "lightskyblue";
+}
+
+function ligarAmarelo(){
+    amarelo.style.backgroundColor = "yellow";
+}
+
+function limparCores() {
+    verde.style.backgroundColor = "darkgreen";
+    vermelho.style.backgroundColor = "darkred"; 
+    azul.style.backgroundColor = "darkblue";
+    amarelo.style.backgroundColor = "goldenrod";  
+}
+
+function acenderCores() {
+    verde.style.backgroundColor = "lightgreen";
+    vermelho.style.backgroundColor = "tomato"; 
+    azul.style.backgroundColor = "lightskyblue";
+    amarelo.style.backgroundColor = "yellow";  
+}
+
+// evento click no pad das cores
+verde.addEventListener('click', () => {
+    sequeciaJogadorAdd(1);
+});
+
+vermelho.addEventListener('click', () => {
+    sequeciaJogadorAdd(2);
+});
+
+azul.addEventListener('click', () => {
+    sequeciaJogadorAdd(3);
+});
+
+amarelo.addEventListener('click', () => {
+    sequeciaJogadorAdd(4);
+});
+
+function sequeciaJogadorAdd(cor) {
+    if (ligado) {
+        //preenche sequencia jogador
+        sequenciaJogador.push(cor);
+        checarResposta();
+
+        switch (cor) {
             case 1: ligarVerde(); break;
             case 2: ligarVermelho(); break;
             case 3: ligarAzul(); break;
             case 4: ligarAmarelo(); break;
         }
-        _dados.acenderLuz++;
-    }, 200);
-}
-
-function ligarVerde(){
-    _comandos.verde.style.backgroundColor = "#90ee90"; 
-    // tocar som 
-}
-
-function ligarVermelho(){
-    _comandos.vermelho.style.backgroundColor = "#ff0000"; 
-    // tocar som
-}
-
-function ligarAzul(){
-    _comandos.azul.style.backgroundColor = "#0000ff"; 
-    // tocar som
-}
-
-function ligarAmarelo(){
-    _comandos.amarelo.style.backgroundColor = "#ffff00"; 
-    // tocar som
-}
-
-function limparCores() {
-    _comandos.verde.style.backgroundColor = "#006400"; 
-    _comandos.vermelho.style.backgroundColor = "#8b0000"; 
-    _comandos.azul.style.backgroundColor = "#00008b";
-    _comandos.amarelo.style.backgroundColor = "#daa520";    
-}
-
-function acenderCores() {
-    _comandos.verde.style.backgroundColor = "#90ee90"; 
-    _comandos.vermelho.style.backgroundColor = "#ff0000"; 
-    _comandos.azul.style.backgroundColor = "#0000ff";
-    _comandos.amarelo.style.backgroundColor = "#ffff00";    
-}
-
-_comandos.verde.addEventListener("click", () => {
-    if(_comandos.ligarJogo){
-        _dados.sequenciaJogador.push(1);
-        //compararResultado();
-        ligarVerde();
-        if (_dados.ganhou){
-            setTimeout(()=> {
-                limparCores();
-            }, 300);
+        
+        if(!vencedor) {
+          setTimeout(() => {
+            limparCores();
+          }, 300);
         }
     }
-});
+}
 
-_comandos.vermelho.addEventListener("click", () => {
-    if(_comandos.ligarJogo){
-        _dados.sequenciaJogador.push(2);
-        //compararResultado();
-        ligarVermelho();
-        if (_dados.ganhou){
-            setTimeout(()=> {
-                limparCores();
-            }, 300);
-        }
+function checarResposta (){
+      //numero de rodadas - verifica sequencia vencedor
+      if (sequenciaJogador.length == 3 && acertou) {
+        jogadorVenceu();
     }
-});
-_comandos.azul.addEventListener("click", () => {
-    if(_comandos.ligarJogo){
-        _dados.sequenciaJogador.push(3);
-        //compararResultado();
-        ligarAzul();
-        if (_dados.ganhou){
-            setTimeout(()=> {
-                limparCores();
-            }, 300);
-        }
-    }
-});
-_comandos.amarelo.addEventListener("click", () => {
-    if(_comandos.ligarJogo){
-        _dados.sequenciaJogador.push(4);
-        //compararResultado();
-        ligarAmarelo();
-        if (_dados.ganhou){
-            setTimeout(()=> {
-                limparCores();
-            }, 300);
-        }
-    }
-});
+  
+    //sequencia incorreta - reinicia jogo
+    if (sequenciaJogador[sequenciaJogador.length - 1] !== sequenciaJogo[sequenciaJogador.length - 1]){
+        acertou = false;
+        acenderCores();
+        placar.innerHTML = "Errooou!!"
+        setTimeout(() => {
+            iniciaRodada();
+        }, 1500);
 
-function compararResultado () {
-    // if(_dados.sequenciaJogador[_dados.sequenciaJogador.length - 1] 
-    //     != _dados.sequenciaJogo[_dados.sequenciaJogo.length - 1]) {
-    //     _dados.ganhou = false;
-    // }  
+    }
+      // sequecia correta - continua jogo
+      if (rodada == sequenciaJogador.length && acertou && !vencedor) {
+        rodada++;
+        sequenciaJogador = [];
+        jogoComputador = true;
+        rodadaJogo = 0;
+        placar.innerHTML = rodada;
+        intervaloId = setInterval(rodadaComputador, 800);
+    }
+}
 
-    console.log("comparaResultado");
-    return;
+function jogadorVenceu() {
+    ligado = false;
+    vencedor = true;
+    acenderCores();
+    placar.innerHTML = "Venceu!!!";
+    setTimeout(() => {
+        iniciaRodada();
+    }, 1500);
 }

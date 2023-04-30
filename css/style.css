@@ -48,27 +48,32 @@ body {
   height: 100%;
   display: flex;
   justify-items: auto;
+  border-radius: 25%;
 }
 
 #principal__jogo__area__verde {
   width: 15.1rem;
   height: 15.1rem;
   background: #006400;
+  border-top-left-radius: 25% ;
 }
 #principal__jogo__area__vermelho {
   height: 15.1rem;
   width: 15.1rem;
   background: #8b0000;
+  border-bottom-left-radius: 25%;
 }
 #principal__jogo__area__amarelo {
   height: 15.1rem;
   width: 15.1rem;
   background: #daa520;
+  border-bottom-right-radius: 25%;
 }
 #principal__jogo__area__azul {
   height: 15.1rem;
   width: 15.1rem;
   background: #00008b;
+  border-top-right-radius: 25%;
 }
 
 #principal__jogo__area__centro {
@@ -86,28 +91,26 @@ body {
 #principal__jogo__area__centro__logo {
   font-family: var(--surferFonte);
   font-size: 2.5rem;
-  margin: 2% 0% 7% 3%;
-}
-#principal__jogo__area__centro__seletor {
-  position: absolute;
-  margin-left: 2%;
-}
-.principal__jogo__area__seletor__ligar {
-  background-color: #ff0000;
-}
-.principal__jogo__area__seletor__chance {
-  background-color: #ff0000;
-}
-.principal__jogo__area__seletor__texto {
-  font-family: var(--robotoFonte);
+  margin-left: 3%;
 }
 #principal__jogo__area__botao__iniciar {
   color: #4b0082;
+  font-size: 1.3rem;
+  font-family: var(--robotoFonte);
+  background-color: #F08080	;
+  margin-left: 25%;
+  border-radius: 25%;
+}
+
+#principal__jogo__area__botao__parar {
+  color: #4b0082;
   font-size: 1.5rem;
   font-family: var(--robotoFonte);
-  background-color: #ffffff;
-  margin: 15% 0% 0% 23%;
+  background-color: #87CEEB	;
+  margin: 5% 29%;
+  border-radius: 25%;
 }
+
 #principal__jogo__area__rodada {
   background: #330000;
   color: #ff0000;
@@ -123,6 +126,9 @@ body {
   font-size: 1rem;
   font-weight: 400;
   margin: 4% 35% 0%;
+}
+.rodape__jogo {
+  margin-top: 1%;
 }
 
 @media (max-width: 900px) {

@@ -5,20 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo Genius</title>
-
-    <audio id="clip1">
-    <source src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3"></source>
-    </audio>
-    <audio id="clip2">
-    <source src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3"></source>
-    </audio>
-    <audio id="clip3">
-    <source src="https://s3.amazonaws.com/freecodecamp/simonSound3.mp3"></source>
-    </audio>
-    <audio id="clip4">
-    <source src="https://s3.amazonaws.com/freecodecamp/simonSound4.mp3"></source>
-    </audio>
+    <title>Vai Gênio!</title>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -26,14 +13,14 @@
 <body>
     <main class="principal">
         <section class="principal__regras">
-            <h1 class="principal__regras__titulo">Regras do jogo:</h1>
+            <h1 class="principal__regras__titulo">Como funciona??</h1>
             <ol class="principal__regras_lista">
-                <li>Marque <strong>"Ligar"</strong></li>
-                <li>Continue do último erro em <strong>"Chance"</strong></li>
-                <li>Clique no botão <strong>"Iniciar"</strong></li>
+                <li>Clique no botão<strong>"Iniciar"</strong></li>
+                <li>O jogo mostra uma sequência de cores. Memorize!!</li>
                 <li>Tente reproduzir a sequência, clicando nas cores</li>
+                <li>Mas se achar muito difícil, pode clicar que <strong>"Parar"</strong></li>
                 <p></p>
-                <li><strong>Boa Sorte!!!</strong></li>
+                <li><strong>Boa Sorte e divirta-se!!!</strong></li>
 
             </ol>
         </section>
@@ -51,23 +38,18 @@
                 <div id="principal__jogo__area__centro">
                     <div id="principal__jogo__area__centro__logo">Vai Gênio!</div>
                     
-                    <div id="principal__jogo__area__centro__seletor">    
-                        <label class="principal__jogo__area__seletor__texto"> Ligar
-                            <input type="checkbox" id="principal__jogo__area__seletor__ligar">
-                        </label>
-                        <label class="principal__jogo__area__seletor__texto"> Chance
-                            <input type="checkbox" id="principal__jogo__area__seletor__chance">
-                        </label>
-                    </div>
-                    
                     <button id="principal__jogo__area__botao__iniciar">Iniciar</button>
                     
                     <div class="principal__jogo__area__rodada__texto">Rodada</div>
                     <div id="principal__jogo__area__rodada"></div>
+
+                    <button id="principal__jogo__area__botao__parar">Parar</button>
+
                 </div> 
             </section>
         </section>
     </main>
   <script  src="js/index.js"></script>
 </body>
+<footer class="rodape__jogo"></footer>
 </html>
